@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sondage - Qu'attendez-vous d'un Conseiller des Français de l'étranger ?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background-color: #f8f9fa;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="30" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="60" cy="70" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="30" cy="80" r="1.2" fill="rgba(255,255,255,0.1)"/></svg>');
+        }
+
+        .logo-section {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 20px;
+        }
+
+        .logo-text {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .logo-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .greeting {
+            font-size: 1.3rem;
+            color: #1e40af;
+            margin-bottom: 25px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .intro-section {
+            background: linear-gradient(45deg, #f8fafc, #e2e8f0);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+
+        .intro-text {
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+        }
+
+        .reminder-box {
+            background: #fef3c7;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #f59e0b;
+            margin: 25px 0;
+        }
+
+        .reminder-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 10px;
+        }
+
+        .reminder-text {
+            color: #92400e;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .goal-section {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .goal-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .goal-text {
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .proposals-title {
+            text-align: center;
+            color: #1e40af;
+            margin: 30px 0 20px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .proposal-item {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .proposal-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .proposal-item:hover::before {
+            left: 100%;
+        }
+
+        .proposal-item:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+        }
+
+        .proposal-number {
+            font-size: 1.5rem;
+            margin-right: 10px;
+            display: inline-block;
+        }
+
+        .proposal-text {
+            font-size: 1rem;
+            color: #2c3e50;
+            line-height: 1.5;
+            display: inline;
+        }
+
+        .election-box {
+            background: #fef3c7;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid #f59e0b;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .election-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .election-text {
+            font-size: 1.1rem;
+            color: #92400e;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .election-cta {
+            font-size: 1.05rem;
+            color: #1e40af;
+            font-weight: 700;
+            margin-top: 15px;
+        }
+
+        .thanks-section {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 1.2rem;
+            color: #1e40af;
+        }
+
+        .linkedin-link {
+            background: #0077b5;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 20px 0;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .linkedin-link:hover {
+            background: #005885;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 119, 181, 0.3);
+        }
+
+        .survey-section {
+            background: linear-gradient(45deg, #f8fafc, #e2e8f0);
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            border: 2px solid #667eea;
+        }
+
+        .survey-title {
+            font-size: 1.3rem;
+            color: #1e40af;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .survey-option {
+            background: white;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border: 2px solid #e5e7eb;
+            font-size: 1rem;
+            color: #2c3e50;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .survey-option:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .footer {
+            background: #1f2937;
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+        }
+
+        .footer-content {
+            margin-bottom: 20px;
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #fbbf24;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-link {
+            color: #fbbf24;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: white;
+        }
+
+        .disclaimer {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 20px;
+            border-top: 1px solid #374151;
+            padding-top: 15px;
+        }
+
+        .flags {
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+
+        @media (max-width: 600px) {
+            .email-container {
+                border-radius: 0;
+                margin: 0;
+            }
+
+            .header, .content, .footer {
+                padding: 20px;
+            }
+
+            .logo-text {
+                font-size: 2rem;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header avec logo et branding -->
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo-text">Romain CARTON</div>
+                <div class="flags">🇫🇷 🌺 🇺🇸</div>
+                <div class="logo-subtitle">Conseiller des Français de l'Étranger 2026</div>
+            </div>
+        </div>
+
+        <!-- Contenu principal -->
+        <div class="content">
+            <div class="greeting">
+                Sondage du jour : Qu'attendez-vous d'un Conseiller des Français de l'étranger ?
+            </div>
+
+            <div class="reminder-box">
+                <div class="reminder-title">Petit rappel 👉</div>
+                <div class="reminder-text">
+                    Le Conseiller des Français de l'étranger, c'est un peu le "conseiller municipal" des Français vivant hors de France.
+                    Élu pour 6 ans, il représente les Français de sa circonscription et travaille en lien avec le Consulat sur de nombreux sujets : éducation, santé, sécurité, emploi, formation, etc.
+                </div>
+            </div>
+
+            <div class="goal-section">
+                <div class="goal-icon">🎯</div>
+                <div class="goal-text">
+                    Avec mon équipe, nous souhaitons mieux comprendre vos attentes concrètes au quotidien, afin de construire un plan d'action réaliste et utile pour notre communauté.
+                </div>
+            </div>
+
+            <div class="proposals-title">
+                Voici quelques pistes<br>
+                <span style="font-size: 0.9rem; font-weight: 400;">(mais vous pouvez bien sûr en ajouter en me contactant directement)</span>
+            </div>
+
+            <div class="proposal-item">
+                <span class="proposal-number">1️⃣</span>
+                <span class="proposal-text"><strong>Faciliter le renouvellement des passeports</strong> sans comparution personnelle au consulat.</span>
+            </div>
+
+            <div class="proposal-item">
+                <span class="proposal-number">2️⃣</span>
+                <span class="proposal-text"><strong>Soutenir l'entrepreneuriat :</strong> accompagner la création ou le développement d'activités aux États-Unis, grâce à un réseau de professionnels de l'expansion d'entreprise.</span>
+            </div>
+
+            <div class="proposal-item">
+                <span class="proposal-number">3️⃣</span>
+                <span class="proposal-text"><strong>Simplifier les démarches administratives</strong> avec le Consulat et l'Ambassade, avec des délais plus clairs et plus rapides.</span>
+            </div>
+
+            <div class="proposal-item">
+                <span class="proposal-number">4️⃣</span>
+                <span class="proposal-text"><strong>Accélérer le traitement des dossiers de retraite,</strong> avec un suivi et delais garanti.</span>
+            </div>
+
+            <div class="proposal-item">
+                <span class="proposal-number">5️⃣</span>
+                <span class="proposal-text"><strong>Renforcer le soutien scolaire,</strong> notamment à travers les bourses d'éducation.</span>
+            </div>
+
+            <div class="proposal-item">
+                <span class="proposal-number">6️⃣</span>
+                <span class="proposal-text"><strong>Favoriser la possibilité pour nos enfants de passer le mois de juin dans une école en France,</strong> via des partenariats adaptés (calendrier scolaire décalé entre la Floride et la France).</span>
+            </div>
+
+            <div class="proposal-item">
+                <span class="proposal-number">7️⃣</span>
+                <span class="proposal-text"><strong>Aider au renouvellement des visas</strong> et à la compréhension des démarches locales.</span>
+            </div>
+
+            <div class="proposal-item">
+                <span class="proposal-number">8️⃣</span>
+                <span class="proposal-text"><strong>Et plus largement, insuffler une nouvelle dynamique</strong> dans notre communauté française de Floride !</span>
+            </div>
+
+            <div class="election-box">
+                <div class="election-icon">🗳️</div>
+                <div class="election-text">
+                    Les élections des Conseillers des Français de l'étranger auront lieu en mai 2026.
+                </div>
+                <div class="election-cta">
+                    C'est le moment de faire entendre votre voix et de partager vos idées !
+                </div>
+            </div>
+
+            <div class="survey-section">
+                <div class="survey-title">📊 Sondage : Qu'attendez-vous d'un Conseiller des Français de l'étranger ?</div>
+                <div class="survey-option">✓ Renouvellement des passeports</div>
+                <div class="survey-option">✓ Soutenir l'entrepreneuriat</div>
+                <div class="survey-option">✓ Simplifier les démarches</div>
+                <div class="survey-option">✓ Scolarité Française des enfants</div>
+            </div>
+
+            <div class="thanks-section">
+                🙏 Merci à toutes et à tous pour votre participation
+            </div>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="https://www.linkedin.com/posts/romain-carton-7b54751a2_sondage-du-jour-quattendez-vous-dun-conseiller-activity-7392737454077943809-kFl5/?utm_source=share&utm_medium=member_desktop" class="linkedin-link" target="_blank">
+                    📱 Voir le post LinkedIn original
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-content">
+                <div class="footer-title">Restons en Contact</div>
+
+                <div class="contact-info">
+                    <div class="contact-item">
+                        📧 contact@romaincarton2026.org
+                    </div>
+                    <div class="contact-item">
+                        📞 +1 (321) 514-7137 
+                    </div>
+                    <div class="contact-item">
+                        🌐 www.romaincarton2026.org
+                    </div>
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <strong>Circonscription :</strong> Floride • Porto Rico • Îles Vierges • Bahamas
+                </div>
+
+                <div class="social-links">
+                    <a href="#" class="social-link">Facebook</a>
+                    <a href="#" class="social-link">LinkedIn</a>
+                    <a href="#" class="social-link">Instagram</a>
+                </div>
+            </div>
+
+            <div class="disclaimer">
+                Cette newsletter est envoyée par Romain Carton, candidat aux élections des Conseillers des Français de l'Étranger 2026.
+                <br><br>
+                Vous recevez cet email car vous vous êtes inscrit à notre liste de diffusion ou avez manifesté votre intérêt pour la représentation des Français de Floride.
+                <br><br>
+                <a href="#" style="color: #fbbf24;">Se désabonner</a> | <a href="#" style="color: #fbbf24;">Gérer mes préférences</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
