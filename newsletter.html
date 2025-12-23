@@ -1,470 +1,772 @@
-<!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Newsletter Romain Carton - Conseiller des Français de l'Étranger 2026</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Georgia', serif;
-            line-height: 1.6;
-            color: #2c3e50;
-            background-color: #f8f9fa;
-        }
-
-        .email-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border-radius: 16px;
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px 40px;
-            text-align: center;
-            position: relative;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="30" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="60" cy="70" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="30" cy="80" r="1.2" fill="rgba(255,255,255,0.1)"/></svg>');
-        }
-
-        .logo-section {
-            position: relative;
-            z-index: 2;
-            margin-bottom: 20px;
-        }
-
-        .logo-text {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 5px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .logo-subtitle {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            font-style: italic;
-        }
-
-        .plumeria {
-            display: inline-block;
-            font-size: 2rem;
-            margin: 0 10px;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        .content {
-            padding: 40px;
-        }
-
-        .greeting {
-            font-size: 1.2rem;
-            color: #1e40af;
-            margin-bottom: 25px;
-            font-weight: 600;
-        }
-
-        .intro-section {
-            background: linear-gradient(45deg, #f8fafc, #e2e8f0);
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            border-left: 4px solid #667eea;
-        }
-
-        .intro-text {
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-        }
-
-        .highlight {
-            background: linear-gradient(120deg, #fbbf24, #f59e0b);
-            padding: 2px 8px;
-            border-radius: 4px;
-            color: white;
-            font-weight: 600;
-        }
-
-        .themes-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .theme-card {
-            background: white;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .theme-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .theme-card:hover::before {
-            left: 100%;
-        }
-
-        .theme-card:hover {
-            border-color: #667eea;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
-        }
-
-        .theme-icon {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .theme-title {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #1e40af;
-            margin-bottom: 8px;
-        }
-
-        .theme-desc {
-            font-size: 0.9rem;
-            color: #6b7280;
-            line-height: 1.4;
-        }
-
-        .cta-section {
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
-            color: white;
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-            margin: 30px 0;
-        }
-
-        .cta-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, #f59e0b, #d97706);
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
-        }
-
-        .stats-section {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin: 30px 0;
-            padding: 25px;
-            background: #f8fafc;
-            border-radius: 12px;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #dc2626;
-            margin-bottom: 5px;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: #6b7280;
-        }
-
-        .footer {
-            background: #1f2937;
-            color: white;
-            padding: 30px 40px;
-            text-align: center;
-        }
-
-        .footer-content {
-            margin-bottom: 20px;
-        }
-
-        .footer-title {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            color: #fbbf24;
-        }
-
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .contact-item {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        .social-links {
-            margin-top: 20px;
-        }
-
-        .social-link {
-            color: #fbbf24;
-            text-decoration: none;
-            margin: 0 10px;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-        }
-
-        .social-link:hover {
-            color: white;
-        }
-
-        .disclaimer {
-            font-size: 0.8rem;
-            opacity: 0.7;
-            margin-top: 20px;
-            border-top: 1px solid #374151;
-            padding-top: 15px;
-        }
-
-        .flags {
-            font-size: 1.5rem;
-            margin: 10px 0;
-        }
-
-        @media (max-width: 600px) {
-            .email-container {
-                border-radius: 0;
-                margin: 0;
-            }
-            
-            .header, .content, .footer {
-                padding: 20px;
-            }
-            
-            .themes-grid, .stats-section {
-                grid-template-columns: 1fr;
-            }
-            
-            .logo-text {
-                font-size: 2rem;
-            }
-            
-            .contact-info {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css" style="display:none;"> P {margin-top:0;margin-bottom:0;} </style>
 </head>
-<body>
-    <div class="email-container">
-        <!-- Header avec logo et branding -->
-        <div class="header">
-            <div class="logo-section">
-                <div class="logo-text">Romain CARTON</div>
-                <div class="flags">🇫🇷 🌺 🇺🇸</div>
-                <div class="logo-subtitle">Conseiller des Français de l'Étranger 2026</div>
-            </div>
-        </div>
-
-        <!-- Contenu principal -->
-        <div class="content">
-            <div class="greeting">
-                Chères Françaises, Chers Français de Floride,
-            </div>
-
-            <div class="intro-section">
-                <div class="intro-text">
-                    Après <span class="highlight">15 années</span> passées en Floride, père de famille et entrepreneur, je me présente pour devenir votre <strong>Conseiller des Français de l'Étranger</strong> lors des élections de mai 2026.
-                </div>
-                <div class="intro-text">
-                    Notre communauté française mérite une représentation moderne, efficace et à l'écoute de nos vrais défis quotidiens.
-                </div>
-            </div>
-
-            <!-- Statistiques importantes -->
-            <div class="stats-section">
-                <div class="stat-item">
-                    <div class="stat-number">25K+</div>
-                    <div class="stat-label">Français en Floride</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">4</div>
-                    <div class="stat-label">Bureaux de vote</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">15</div>
-                    <div class="stat-label">Ans d'expérience USA</div>
-                </div>
-            </div>
-
-            <!-- Mes 5 priorités -->
-            <h2 style="text-align: center; color: #1e40af; margin: 30px 0 20px; font-size: 1.8rem;">
-                Mes 5 Priorités pour Notre Communauté
-            </h2>
-
-            <div class="themes-grid">
-                <div class="theme-card">
-                    <span class="theme-icon">💰</span>
-                    <div class="theme-title">Fiscalité Simplifiée</div>
-                    <div class="theme-desc">Stop à la double imposition et aux démarches administratives complexes</div>
-                </div>
-
-                <div class="theme-card">
-                    <span class="theme-icon">🏥</span>
-                    <div class="theme-title">Santé Accessible</div>
-                    <div class="theme-desc">Coordination France-USA et droits sociaux préservés</div>
-                </div>
-
-                <div class="theme-card">
-                    <span class="theme-icon">🎓</span>
-                    <div class="theme-title">Éducation Française</div>
-                    <div class="theme-desc">Développer l'offre éducative et l'enseignement du français</div>
-                </div>
-
-                <div class="theme-card">
-                    <span class="theme-icon">📋</span>
-                    <div class="theme-title">Démarches Immigration</div>
-                    <div class="theme-desc">Accompagnement visa, green card et naturalisation</div>
-                </div>
-            </div>
-
-            <div class="theme-card" style="grid-column: 1 / -1; margin-top: 20px;">
-                <span class="theme-icon">🏠</span>
-                <div class="theme-title">Préparation du Retour</div>
-                <div class="theme-desc">Réintégration professionnelle, portabilité des droits et scolarisation des enfants</div>
-            </div>
-
-            <!-- Call to action -->
-            <div class="cta-section">
-                <div class="cta-title">🚀 Rejoignez le Mouvement !</div>
-                <p style="margin-bottom: 20px; font-size: 1.1rem;">
-                    Ensemble, construisons une représentation moderne et efficace pour les Français de Floride
-                </p>
-                <a href="https://www.romaincarton2026.com" class="cta-button">
-                    Découvrir Mon Programme
-                </a>
-            </div>
-
-            <!-- Message personnel -->
-            <div style="background: #fef3c7; padding: 25px; border-radius: 12px; border-left: 4px solid #f59e0b; margin: 30px 0;">
-                <p style="font-style: italic; color: #92400e; font-size: 1.05rem;">
-                    <strong>"En tant qu'entrepreneur ayant vécu tous ces défis,</strong> je sais exactement ce que vous traversez. Il est temps d'avoir une voix qui comprend réellement nos enjeux et qui agit concrètement pour les résoudre."
-                </p>
-                <p style="text-align: right; margin-top: 15px; font-weight: 600; color: #1e40af;">
-                    — Romain Carton
-                </p>
-            </div>
-
-            <!-- Prochaines étapes -->
-            <h3 style="color: #1e40af; margin: 25px 0 15px;">📅 Les Prochaines Étapes</h3>
-            <ul style="list-style: none; padding-left: 0;">
-                <li style="margin-bottom: 10px; padding-left: 25px; position: relative;">
-                    <span style="position: absolute; left: 0; color: #f59e0b;">✓</span>
-                    <strong>Octobre 2025</strong> : Tournée des associations françaises de Floride
-                </li>
-                <li style="margin-bottom: 10px; padding-left: 25px; position: relative;">
-                    <span style="position: absolute; left: 0; color: #f59e0b;">✓</span>
-                    <strong>Novembre-Décembre</strong> : Réunions d'écoute à Miami, Orlando, Tampa
-                </li>
-                <li style="margin-bottom: 10px; padding-left: 25px; position: relative;">
-                    <span style="position: absolute; left: 0; color: #f59e0b;">✓</span>
-                    <strong>Mars 2026</strong> : Dépôt officiel de candidature
-                </li>
-                <li style="margin-bottom: 10px; padding-left: 25px; position: relative;">
-                    <span style="position: absolute; left: 0; color: #f59e0b;">✓</span>
-                    <strong>Mai 2026</strong> : Élections - Votre vote compte !
-                </li>
-            </ul>
-        </div>
-
-        <!-- Footer -->
-        <div class="footer">
-            <div class="footer-content">
-                <div class="footer-title">Restons en Contact</div>
-                
-                <div class="contact-info">
-                    <div class="contact-item">
-                        📧 contact@romaincarton2026.com
-                    </div>
-                    <div class="contact-item">
-                        📞 +1 (305) 555-VOTE
-                    </div>
-                    <div class="contact-item">
-                        🌐 www.romaincarton2026.com
-                    </div>
-                </div>
-
-                <div style="margin: 20px 0;">
-                    <strong>Circonscription :</strong> Floride • Porto Rico • Îles Vierges • Bahamas
-                </div>
-
-                <div class="social-links">
-                    <a href="#" class="social-link">Facebook</a>
-                    <a href="#" class="social-link">LinkedIn</a>
-                    <a href="#" class="social-link">Instagram</a>
-                </div>
-            </div>
-
-            <div class="disclaimer">
-                Cette newsletter est envoyée par Romain Carton, candidat aux élections des Conseillers des Français de l'Étranger 2026.
-                <br><br>
-                Vous recevez cet email car vous vous êtes inscrit à notre liste de diffusion ou avez manifesté votre intérêt pour la représentation des Français de Floride.
-                <br><br>
-                <a href="#" style="color: #fbbf24;">Se désabonner</a> | <a href="#" style="color: #fbbf24;">Gérer mes préférences</a>
-            </div>
-        </div>
-    </div>
+<body dir="ltr">
+<div style="font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class="elementToProof">
+<span style="font-family: Calibri, Arial, Helvetica, sans-serif;"></span></div>
+<div style="font-family: Calibri, Arial, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style="margin: 0px;"><img style="box-sizing: border-box; display: none;" src="https://r.news.republicains.fr/mk/op/sh/7nVTPdV22TlmzoiiHZ7VpKdhpWAwCvh/3Qc_uoxPerPn"></div>
+<table style="width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="box-sizing: border-box;">
+<table style="width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation" align="center">
+<tbody>
+<tr>
+<td style="box-sizing: border-box;">
+<table style="border-radius: 0px; margin: 0px auto; width: 675px; color: rgb(0, 0, 0); box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation" align="center">
+<tbody>
+<tr>
+<td style="text-align: left; padding-top: 5px; padding-bottom: 5px; vertical-align: top; width: 100%; box-sizing: border-box;">
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; width: 100%; box-sizing: border-box;">
+<div align="center">
+<div style="max-width: 675px; color: rgb(0, 0, 0);"><img style="width: 100%; height: auto; box-sizing: border-box; border-radius: 2px; display: block;" src="https://r.news.republicains.fr/im/sh/QYGVZ3xI1cRl.png?u=WtVElij8PJZGcPbRuxrbyfACArJKVPB3"></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="15" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; box-sizing: border-box;">
+<div align="center">
+<table style="width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="line-height: 1px; border-top: 2px solid rgb(187, 187, 187); box-sizing: border-box;">
+<div style="line-height: 1px; font-size: 1px; color: rgb(0, 0, 0);"> </div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: center; width: 100%; box-sizing: border-box;">
+<h1 style="direction: ltr; text-align: center; line-height: 1.2; margin: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 16px; font-weight: 700; color: rgb(85, 85, 85);">
+Newsletter décembre 2025</h1>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="15" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; box-sizing: border-box;">
+<div align="center">
+<table style="width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="line-height: 1px; border-top: 2px solid rgb(187, 187, 187); box-sizing: border-box;">
+<div style="line-height: 1px; font-size: 1px; color: rgb(0, 0, 0);"> </div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: center; width: 100%; box-sizing: border-box;">
+<h1 style="direction: ltr; text-align: center; line-height: 1.2; margin: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 23px; font-weight: 700; color: rgb(29, 4, 120);">
+Bienvenue à tous les nouveaux Français !</h1>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="10" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; box-sizing: border-box;">
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">&nbsp;</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);"><b>Chers Français de Floride, de Porto Rico, des Îles Vierges, des Bahamas et des Îles Caïmans.</b></span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">&nbsp;</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">Je souhaite tout d’abord la bienvenue à tous les Français récemment arrivés dans notre circonscription. C’est un plaisir de
+ vous compter parmi nous.</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">&nbsp;</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">Pour celles et ceux qui ne me connaissent pas encore, j’ai récemment lancé un projet personnel visant à
+<b>vous représenter auprès du Consulat. L’objectif est de défendre les intérêts communs de nos compatriotes,
+</b>et de contribuer à l’élaboration de politiques publiques (éducation, aide sociale, emploi, sécurité) et de faire remonter nos préoccupations locales auprès des autorités françaises.</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">&nbsp;</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);"><b>Cette démarche est entièrement bénévole et elle est menée en complément de mon activité professionnelle</b>.</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">&nbsp;</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">Dans ce cadre, je me suis engagé à :</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">➖
+<b>Aller à la rencontre des Français de notre circonscription</b>&nbsp;afin d’échanger avec vous sur vos besoins, vos défis et vos attentes, et,
+<b>lorsque cela sera possible, vous proposer des initiatives concrètes que je soutiendrais auprès du Consulat.</b></span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">➖
+<b>Vous tenir informés des actualités consulaires</b>&nbsp;qui vous concernent au quotidien, pour vous accompagner au mieux dans vos démarches et votre vie locale.</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">&nbsp;</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);"><b><u>SOMMAIRE:</u></b></span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);"><b>1️⃣ Vous avez la parole - Votez pour les sujets qui vous concernent au quotidien</b></span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);"><b>2️⃣ Changement pour les ESTA</b></span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);"><b>3️⃣ Élections des Conseillers des Français de l’Étranger 2026 - Inscription Liste Électorale</b></span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);"><b>4️⃣ France Consulaire, un nouveau service d’information pour vos démarches consulaires</b></span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);"><b>5️⃣ Comme promis, je vais a la rencontre des Francais de notre cisconscription</b></span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">&nbsp;</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);"><b>Bonne lecture, et je vous souhaite à toutes et à tous de joyeuses fêtes de fin d’année. On se retrouve en 2026.</b></span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">&nbsp;</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px;"><span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);"><b>En espérant que les informations ci-dessous
+ vous seront utiles. Vous pouvez me contacter directement pour un besoin spécifique sur
+</b></span><span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(118, 102, 255);"><b><u><a style="color: rgb(118, 102, 255); margin-top: 0px; margin-bottom: 0px;" class="OWAAutoLink" id="OWAc2e0e617-0bf3-ff7f-3f66-53fab5c5bcac" href="mailto:contact@romaincarton2026.org">contact@romaincarton2026.org</a></u></b></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="25" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; box-sizing: border-box;">
+<div align="center">
+<table style="width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="line-height: 1px; border-top: 2px solid rgb(187, 187, 187); box-sizing: border-box;">
+<div style="line-height: 1px; font-size: 1px; color: rgb(0, 0, 0);"> </div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: center; width: 100%; box-sizing: border-box;">
+<h1 style="direction: ltr; text-align: center; line-height: 1.2; margin: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 23px; font-weight: 700; color: rgb(29, 4, 120);">
+1️⃣ Vous avez la parole - Votez pour les sujets qui vous concernent au quotidien dans notre circonscription</h1>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="10" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; box-sizing: border-box;">
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">&nbsp;</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);"><b>Dans le cadre de mon initiative, je souhaite vous donner la parole</b>&nbsp;afin que vous puissiez me faire part des sujets qui
+ vous tiennent à cœur et qui vous concernent au quotidien.<br>
+<b>À la fin de la période de vote, je vous communiquerai les résultats et pourquoi pas vous proposer des initiatives.</b></span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px;"><span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);"><b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;⬇️Cliquez
+ ci-dessous pour acceder au vote⬇️</b></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; width: 100%; box-sizing: border-box;">
+<div align="center">
+<div style="max-width: 270px; color: rgb(0, 0, 0);"><a data-auth="NotApplicable" class="OWAAutoLink" id="OWAede6dd9e-e3d4-1b97-a5dc-0648ffd3e873" href="https://r.news.republicains.fr/mk/cl/f/sh/7nVU1aA6Qs4xydhCOp8gDaHjlgl7lyz/4IacTuG9JW4z"><img style="width: 100%; height: auto; box-sizing: border-box; display: block;" src="https://r.news.republicains.fr/im/sh/1sjwVT_96DNw.png?u=WtVElij8PJZGcrwA7OFy4aKSEgh9U8t7"></a></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation" align="center">
+<tbody>
+<tr>
+<td style="box-sizing: border-box;">
+<table style="border-radius: 0px; margin: 0px auto; width: 675px; color: rgb(0, 0, 0); box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation" align="center">
+<tbody>
+<tr>
+<td style="text-align: left; padding-top: 5px; padding-bottom: 5px; vertical-align: top; width: 100%; box-sizing: border-box;">
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="25" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; box-sizing: border-box;">
+<div align="center">
+<table style="width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="line-height: 1px; border-top: 2px solid rgb(187, 187, 187); box-sizing: border-box;">
+<div style="line-height: 1px; font-size: 1px; color: rgb(0, 0, 0);"> </div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: center; width: 100%; box-sizing: border-box;">
+<h1 style="direction: ltr; text-align: center; line-height: 1.2; margin: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 23px; font-weight: 700; color: rgb(29, 4, 120);">
+2️⃣ Changement pour les ESTA</h1>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="10" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; box-sizing: border-box;">
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">&nbsp;</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">L’administration Trump exigera que les touristes provenant de pays exemptés de visa, dont la France, fournissent l’historique
+ de leurs réseaux sociaux pour pouvoir obtenir une autorisation ESTA. Il s’agit d’une nouvelle étape dans le
+<b>renforcement des mesures de surveillance des déplacements</b>&nbsp;vers les États-Unis.</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">&nbsp;</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);"><b>Quand ?</b></span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">Le texte, publié le 10 décembre dans le
+<i>Federal Register</i>, le Journal officiel américain, entrera en vigueur d’ici <b>
+soixante jours</b>, sauf en cas de recours judiciaire.</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);"><br>
+<b>Quels pays?</b></span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">Cette nouvelle obligation concerne les ressortissants des
+<b>pays bénéficiant du programme d’exemption de visa. </b>Actuellement, les ressortissants de
+<b>42 pays</b>, dont la France, peuvent voyager aux États-Unis sans visa, à condition d’obtenir une
+<b>autorisation de voyage électronique (ESTA)</b>.</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);"><br>
+<b>Quoi ?</b></span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">Le texte prévoit d’ajouter les réseaux sociaux comme
+<b>donnée obligatoire</b>&nbsp;dans le cadre d’une demande d’ESTA. Outre l’historique des médias sociaux, les services des douanes et de protection des frontières (CBP) prévoient également de collecter :</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">➖ Les
+<b>numéros de téléphone</b>&nbsp;utilisés au cours des cinq dernières années ;</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">➖ Les
+<b>adresses e-mail</b>&nbsp;utilisées au cours des dix dernières années ;</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">➖ Des informations relatives aux
+<b>membres de la famille</b>&nbsp;: noms, numéros de téléphone, dates et lieux de naissance, adresses de résidence.</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px;"><span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">&nbsp;</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="25" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; box-sizing: border-box;">
+<div align="center">
+<table style="width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="line-height: 1px; border-top: 2px solid rgb(187, 187, 187); box-sizing: border-box;">
+<div style="line-height: 1px; font-size: 1px; color: rgb(0, 0, 0);"> </div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: center; width: 100%; box-sizing: border-box;">
+<h1 style="direction: ltr; text-align: center; line-height: 1.2; margin: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 23px; font-weight: 700; color: rgb(29, 4, 120);">
+3️⃣ Élections des Conseillers des Français de l’Étranger 2026 Inscription sur la Liste Électorale Consulaire&nbsp;</h1>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="10" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; box-sizing: border-box;">
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">&nbsp;</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">Pour la Floride, Porto Rico, Îles Vierges, Bahamas, Îles Caïmans !!<br>
+<br>
+Même si vous êtes inscrit sur le Registre des Français établis hors de France, vous n’êtes pas automatiquement inscrit sur la Liste Électorale Consulaire .<br>
+<br>
+👉 Pour être certain de pouvoir voter en 2026, faites la vérification.<br>
+<br>
+<b>Bonne nouvelle : la démarche est super simple !</b><br>
+<br>
+✨ Comment s’inscrire (ou vérifier son inscription) sur la Liste Électorale Consulaire ?<br>
+<br>
+<b>Rendez-vous sur :</b><br>
+👉 </span><span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(118, 102, 255);"><u><a style="color: rgb(118, 102, 255); margin-top: 0px; margin-bottom: 0px;" data-auth="NotApplicable" class="OWAAutoLink" id="OWA33f434cb-6db0-79ca-90fe-427f3f5f2be9" href="https://r.news.republicains.fr/mk/cl/f/sh/7nVU1aA6Qs4xydhCOp8gDaHjlgl7lyz/dLKQpWgqk8ct">Vote
+ d'un Français installé à l'étranger | Service Public</a></u></span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">&nbsp;⬇️
+<b>J’ai également préparé un guide super simple à utiliser. N’hésitez pas à le partager ! ⬇️</b></span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px;"><span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">&nbsp;</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; width: 100%; box-sizing: border-box;">
+<div align="center">
+<div style="max-width: 405px; color: rgb(0, 0, 0);"><a data-auth="NotApplicable" class="OWAAutoLink" id="OWAc7b3a48c-6941-e8e6-6a55-077e8f3e30e9" href="https://r.news.republicains.fr/mk/cl/f/sh/7nVU1aA6Qs4xydhCOp8gDaHjlgl7lyz/aM2jEb4kk0gR"><img style="width: 100%; height: auto; box-sizing: border-box; display: block;" src="https://r.news.republicains.fr/im/sh/2Xrw585whC1d.png?u=WtVElij8PJZGdKGsJoeKAVUiIW4ySsbB"></a></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="25" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; box-sizing: border-box;">
+<div align="center">
+<table style="width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="line-height: 1px; border-top: 2px solid rgb(187, 187, 187); box-sizing: border-box;">
+<div style="line-height: 1px; font-size: 1px; color: rgb(0, 0, 0);"> </div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: center; width: 100%; box-sizing: border-box;">
+<h1 style="direction: ltr; text-align: center; line-height: 1.2; margin: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 23px; font-weight: 700; color: rgb(29, 4, 120);">
+4️⃣ France Consulaire, un nouveau service d’information pour vos démarches consulaires (hors Visa)</h1>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="10" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; box-sizing: border-box;">
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">&nbsp;</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">Du nouveau pour les Français de Floride, mais plus largement aux États-Unis: la plateforme d’accompagnement France Consulaire
+ est entrée en service le 25 novembre 2025</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">Le Service France Consulaire répondra à toutes vos demandes générales d’information, de clarification ou encore d’aide pour
+ réaliser une démarche administrative concernant les services aux Français</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px;"><span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">➖ Comment actualiser mon inscription consulaire
+ au cours de mon séjour ?<br>
+➖ J’ai perdu mon passeport/ma carte d’identité, que faire ?<br>
+➖ Comment obtenir un acte de naissance ?<br>
+➖ Quelles sont les conditions pour faire une demande de bourse ?<br>
+➖ Comment s’inscrire sur la liste électorale ?<br>
+➖ Est-ce que je dois prendre rendez-vous au consulat ?<br>
+➖ Comment mettre à jour mon livret de famille ?<br>
+➖ Quelles sont les démarches à faire en vue de mon retour en France ?<br>
+<br>
+</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; width: 100%; box-sizing: border-box;">
+<div align="center">
+<div style="max-width: 675px; color: rgb(0, 0, 0);"><img style="width: 100%; height: auto; box-sizing: border-box; display: block;" src="https://r.news.republicains.fr/im/sh/_EV_FOOXoYu8.png?u=WtVElij8PJZGdmbaWF2gGQeyMLSnRcJF"></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="25" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; box-sizing: border-box;">
+<div align="center">
+<table style="width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="line-height: 1px; border-top: 2px solid rgb(187, 187, 187); box-sizing: border-box;">
+<div style="line-height: 1px; font-size: 1px; color: rgb(0, 0, 0);"> </div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: center; width: 100%; box-sizing: border-box;">
+<h1 style="direction: ltr; text-align: center; line-height: 1.2; margin: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 23px; font-weight: 700; color: rgb(29, 4, 120);">
+5️⃣ Comme promis, je vais a la rencontre des Francais de notre cisconscription</h1>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="10" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; box-sizing: border-box;">
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">&nbsp;</span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">N'hesitez pas a me contacter si vous souhaitez echanger, mieux comprendre ma demarche ou tout simplement say Hi!!
+</span><span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(118, 102, 255);"><b><u><a style="color: rgb(118, 102, 255); margin-top: 0px; margin-bottom: 0px;" class="OWAAutoLink" id="OWA68de1602-5e1e-0fd0-7dcb-edab743870df" href="mailto:contact@romaincarton2026.org">contact@romaincarton2026.org</a></u></b></span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px 0px 16px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);"><b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;⬇️Cliquez sur les photos ;) !!⬇️</b></span></p>
+<p style="direction: ltr; text-align: justify; line-height: 1.2; margin: 0px;"><span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 15px; color: rgb(0, 0, 0);">&nbsp;</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: center; width: 100%; box-sizing: border-box;">
+<h1 style="direction: ltr; text-align: center; line-height: 1.2; margin: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 19px; font-weight: 700; color: rgb(29, 4, 120);">
+Petit déjeuner francophone chez Jacqueline’s Bakery</h1>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; width: 100%; box-sizing: border-box;">
+<div align="center">
+<div style="max-width: 338px; color: rgb(0, 0, 0);"><a data-auth="NotApplicable" class="OWAAutoLink" id="OWAfd07f0c3-9639-0fe6-3097-3eec102ac067" href="https://r.news.republicains.fr/mk/cl/f/sh/7nVU1aA6Qs4xydhCOp8gDaHjlgl7lyz/zIutrIpNPXov"><img style="width: 100%; height: auto; box-sizing: border-box; display: block;" src="https://r.news.republicains.fr/im/sh/W6kv2xYBWMnM.png?u=WtVElij8PJZGeEwIifR2MLpEQAqcQM1J"></a></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div style="text-align: left; line-height: 20px; font-size: 1px; color: rgb(0, 0, 0);">
+ </div>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: center; width: 100%; box-sizing: border-box;">
+<h1 style="direction: ltr; text-align: center; line-height: 1.2; margin: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 19px; font-weight: 700; color: rgb(29, 4, 120);">
+Entretien avec le Consul Honoraire de Jacksonville - François Kloc</h1>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; width: 100%; box-sizing: border-box;">
+<div align="center">
+<div style="max-width: 338px; color: rgb(0, 0, 0);"><a data-auth="NotApplicable" class="OWAAutoLink" id="OWA142a295d-ff02-08b3-0afe-28756912a18b" href="https://r.news.republicains.fr/mk/cl/f/sh/7nVU1aA6Qs4xydhCOp8gDaHjlgl7lyz/dTm8c-NgywSd"><img style="width: 100%; height: auto; box-sizing: border-box; display: block;" src="https://r.news.republicains.fr/im/sh/fCxqLERAIDKv.png?u=WtVElij8PJZGehH0v5pOSGzUU0ERP5jN"></a></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div style="text-align: left; line-height: 20px; font-size: 1px; color: rgb(0, 0, 0);">
+ </div>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: center; width: 100%; box-sizing: border-box;">
+<h1 style="direction: ltr; text-align: center; line-height: 1.2; margin: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 19px; font-weight: 700; color: rgb(29, 4, 120);">
+Entretien avec le Consul Honoraire de Porto Rico - Antoine de Marsily</h1>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; width: 100%; box-sizing: border-box;">
+<div align="center">
+<div style="max-width: 338px; color: rgb(0, 0, 0);"><a data-auth="NotApplicable" class="OWAAutoLink" id="OWAef7e6d77-7e6a-7347-b84d-062092acd84b" href="https://r.news.republicains.fr/mk/cl/f/sh/7nVU1aA6Qs4xydhCOp8gDaHjlgl7lyz/Y576t4JRRosL"><img style="width: 100%; height: auto; box-sizing: border-box; display: block;" title="Entretien avec le Consul Honoraire de Porto Rico" alt="Entretien avec le Consul Honoraire de Porto Rico" src="https://r.news.republicains.fr/im/sh/nIFh1_60TUGQ.png?u=WtVElij8PJZGf9bj7WDkYC9kXpcGNpRR"></a></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div style="text-align: left; line-height: 20px; font-size: 1px; color: rgb(0, 0, 0);">
+ </div>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: center; width: 100%; box-sizing: border-box;">
+<h1 style="direction: ltr; text-align: center; line-height: 1.2; margin: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 19px; font-weight: 700; color: rgb(29, 4, 120);">
+Soirée &quot;Le Rouge&quot; à la rencontre des Français d'Orlando</h1>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; width: 100%; box-sizing: border-box;">
+<div align="center">
+<div style="max-width: 338px; color: rgb(0, 0, 0);"><a data-auth="NotApplicable" class="OWAAutoLink" id="OWAccf9ad64-b603-890f-a1e4-90576675c44e" href="https://r.news.republicains.fr/mk/cl/f/sh/7nVU1aA6Qs4xydhCOp8gDaHjlgl7lyz/kGLy49_SKHKq"><img style="width: 100%; height: auto; box-sizing: border-box; display: block;" src="https://r.news.republicains.fr/im/sh/Y6Nrxq5VNXfu.jpg?u=WtVElij8PJZGfbwRJwc6e7K0bf05MZ9V"></a></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div style="text-align: left; line-height: 20px; font-size: 1px; color: rgb(0, 0, 0);">
+ </div>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: center; width: 100%; box-sizing: border-box;">
+<h1 style="direction: ltr; text-align: center; line-height: 1.2; margin: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 19px; font-weight: 700; color: rgb(29, 4, 120);">
+Entretien avec le Consul generale de Miami - Raphël Trapp</h1>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; width: 100%; box-sizing: border-box;">
+<div align="center">
+<div style="max-width: 338px; color: rgb(0, 0, 0);"><a data-auth="NotApplicable" class="OWAAutoLink" id="OWAdd4c1215-0a8e-e58d-69aa-ed8ffeaacab7" href="https://r.news.republicains.fr/mk/cl/f/sh/7nVU1aA6Qs4xydhCOp8gDaHjlgl7lyz/gLaTJp7bbF4h"><img style="width: 100%; height: auto; box-sizing: border-box; display: block;" src="https://r.news.republicains.fr/im/sh/fpW7I6sXz2J0.png?u=WtVElij8PJZGg4H9WN0Sk2UGfUNuLIrZ"></a></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div style="text-align: left; line-height: 20px; font-size: 1px; color: rgb(0, 0, 0);">
+ </div>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: center; width: 100%; box-sizing: border-box;">
+<h1 style="direction: ltr; text-align: center; line-height: 1.2; margin: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 19px; font-weight: 700; color: rgb(29, 4, 120);">
+Entretien avec le Consul Honoraire des Bahamas - Frédéric Bournas</h1>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; width: 100%; box-sizing: border-box;">
+<div align="center">
+<div style="max-width: 338px; color: rgb(0, 0, 0);"><a data-auth="NotApplicable" class="OWAAutoLink" id="OWA0e9414ff-81bd-f8d4-ec6c-c7cc5582a7ab" href="https://r.news.republicains.fr/mk/cl/f/sh/7nVU1aA6Qs4xydhCOp8gDaHjlgl7lyz/zGMjfU9-kSk_"><img style="width: 100%; height: auto; box-sizing: border-box; display: block;" src="https://r.news.republicains.fr/im/sh/M5YPj8Y9v6Lv.png?u=WtVElij8PJZGgWbrinOopxeWjJljK2Zd"></a></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div style="text-align: left; line-height: 20px; font-size: 1px; color: rgb(0, 0, 0);">
+ </div>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: center; width: 100%; box-sizing: border-box;">
+<h1 style="direction: ltr; text-align: center; line-height: 1.2; margin: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 19px; font-weight: 700; color: rgb(29, 4, 120);">
+Petit déjeuner chaleureux de la communauté Française</h1>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; width: 100%; box-sizing: border-box;">
+<div align="center">
+<div style="max-width: 338px; color: rgb(0, 0, 0);"><a data-auth="NotApplicable" class="OWAAutoLink" id="OWAb6132bd5-d527-3da5-c59e-f9b78d6e4449" href="https://r.news.republicains.fr/mk/cl/f/sh/7nVU1aA6Qs4xydhCOp8gDaHjlgl7lyz/UHKH-N7GUs-0"><img style="width: 100%; height: auto; box-sizing: border-box; display: block;" src="https://r.news.republicains.fr/im/sh/QE8tZqzbNHSL.png?u=2BpAyz2gMiWncci5QZfh765ZNmisxrgpsv"></a></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div style="text-align: left; line-height: 20px; font-size: 1px; color: rgb(0, 0, 0);">
+ </div>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: center; width: 100%; box-sizing: border-box;">
+<h1 style="direction: ltr; text-align: center; line-height: 1.2; margin: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 19px; font-weight: 700; color: rgb(29, 4, 120);">
+Halloween a la rencontre de l’équipe Crêpe du Jour</h1>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; width: 100%; box-sizing: border-box;">
+<div align="center">
+<div style="max-width: 338px; color: rgb(0, 0, 0);"><a data-auth="NotApplicable" class="OWAAutoLink" id="OWA88f6cd60-908a-6208-f91c-a725e5289971" href="https://r.news.republicains.fr/mk/cl/f/sh/7nVU1aA6Qs4xydhCOp8gDaHjlgl7lyz/fJzsMlljXiIU"><img style="width: 100%; height: auto; box-sizing: border-box; display: block;" src="https://r.news.republicains.fr/im/sh/Biwa1STyvrb0.png?u=2BpAyz2gMiWnceb4x4yfgKXbk6X3KMTZpR"></a></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div style="text-align: left; line-height: 20px; font-size: 1px; color: rgb(0, 0, 0);">
+ </div>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: center; width: 100%; box-sizing: border-box;">
+<h1 style="direction: ltr; text-align: center; line-height: 1.2; margin: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 19px; font-weight: 700; color: rgb(29, 4, 120);">
+Entretien avec la Consule Honoraire d'Orlando - Brigitte Jensen</h1>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; width: 100%; box-sizing: border-box;">
+<div align="center">
+<div style="max-width: 338px; color: rgb(0, 0, 0);"><a data-auth="NotApplicable" class="OWAAutoLink" id="OWA303b4111-2c60-cac7-d964-682034786b7e" href="https://r.news.republicains.fr/mk/cl/f/sh/7nVU1aA6Qs4xydhCOp8gDaHjlgl7lyz/RY_JfQTWQT3A"><img style="width: 100%; height: auto; box-sizing: border-box; display: block;" src="https://r.news.republicains.fr/im/sh/IqFXvFuLaMfG.png?u=2BpAyz2gMiWncgU4TaHeFYze6QLDgrGJlx"></a></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div style="text-align: left; line-height: 10px; font-size: 1px; color: rgb(0, 0, 0);">
+ </div>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="20" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; box-sizing: border-box;">
+<div align="center">
+<table style="width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="line-height: 1px; border-top: 1px solid rgb(187, 187, 187); box-sizing: border-box;">
+<div style="line-height: 1px; font-size: 1px; color: rgb(0, 0, 0);"> </div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="10" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; box-sizing: border-box;">
+<div align="center">
+<table style="display: inline-block; width: 108px; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="padding-right: 2px; padding-left: 2px; box-sizing: border-box;"><span style="color: rgb(0, 0, 0);"><a data-auth="NotApplicable" class="OWAAutoLink" id="OWAfb0b97ed-1584-0efe-3d80-ddbe1890a64a" href="https://r.news.republicains.fr/mk/cl/f/sh/7nVU1aA6Qs4xydhCOp8gDaHjlgl7lyz/O6dtIWFtg-iL"><img style="width: 32px; height: auto; box-sizing: border-box; display: block;" width="32" title="Facebook" alt="Facebook" src="https://r.news.republicains.fr/im/sh/9sNSJZjFrjQu.png?u=2BpAyz2gMiWnciN405aconRgSk9O3M33iT"></a></span></td>
+<td style="padding-right: 2px; padding-left: 2px; box-sizing: border-box;"><span style="color: rgb(0, 0, 0);"><a data-auth="NotApplicable" class="OWAAutoLink" id="OWA38c94cf5-ab2e-ffd8-5602-76253e3dddc7" href="https://r.news.republicains.fr/mk/cl/f/sh/7nVU1aA6Qs4xydhCOp8gDaHjlgl7lyz/TMojPVZ6ZTn6"><img style="width: 32px; height: auto; box-sizing: border-box; display: block;" width="32" title="Instagram" alt="Instagram" src="https://r.news.republicains.fr/im/sh/z_-dxpI4fKRk.png?u=2BpAyz2gMiWnckG3WatbO1tip3xYPqpnez"></a></span></td>
+<td style="padding-right: 2px; padding-left: 2px; box-sizing: border-box;"><span style="color: rgb(0, 0, 0);"><a data-auth="NotApplicable" class="OWAAutoLink" id="OWA27dc1076-f9bf-1d4b-e067-0a92ee530903" href="https://r.news.republicains.fr/mk/cl/f/sh/7nVU1aA6Qs4xydhCOp8gDaHjlgl7lyz/hpx_iGd63CTB"><img style="width: 32px; height: auto; box-sizing: border-box; display: block;" width="32" title="LinkedIn" alt="LinkedIn" src="https://r.news.republicains.fr/im/sh/e7eMeBqnCJEv.png?u=2BpAyz2gMiWncm9336CZxGLlBNlimLcXbV"></a></span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="20" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; box-sizing: border-box;">
+<div align="center">
+<table style="width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="0" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="line-height: 1px; border-top: 1px solid rgb(187, 187, 187); box-sizing: border-box;">
+<div style="line-height: 1px; font-size: 1px; color: rgb(0, 0, 0);"> </div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 100%; box-sizing: border-box; border-collapse: collapse; border-spacing: 0px;" cellpadding="10" cellspacing="0" role="presentation">
+<tbody>
+<tr>
+<td style="text-align: left; box-sizing: border-box;">
+<p style="direction: ltr; text-align: center; line-height: 1.2; margin: 0px 0px 6px;">
+<span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 11px; color: rgb(0, 0, 0);">Le présent message vous a été adressé sur l'adresse électronique que vous avez mentionnée lors de votre inscription sur la
+ liste électorale consulaire (article L.330-4 du code électoral). Conformément aux recommandations de la CNIL, vous pouvez vous opposer à l'envoi de nouveaux messages en cliquant sur le lien de désinscription ci-dessous</span></p>
+<p style="direction: ltr; text-align: center; line-height: 1.2; margin: 0px;"><span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 11px; color: rgb(0, 104, 165);"><u><a style="color: rgb(0, 104, 165); margin-top: 0px; margin-bottom: 0px;" data-auth="NotApplicable" class="OWAAutoLink" id="OWAe5811d36-ebd6-3b96-7c26-3dbd82ec8d17" href="https://r.news.republicains.fr/mk/un/v2/sh/7nVTPdXAsD9fC5opLdQyGR3T3x80eXx/zVvnqvedi3ke">cliquez
+ ici</a></u></span><span style="letter-spacing: 0px; font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif; font-size: 11px; color: rgb(0, 0, 0);">.</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
 </body>
 </html>
