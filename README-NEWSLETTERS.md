@@ -128,14 +128,46 @@ const NEWSLETTERS = [
 ✅ **Compatible GitHub Pages** : Utilise uniquement HTML/CSS/JavaScript
 ✅ **Navigation facile** : Les visiteurs peuvent naviguer entre toutes les newsletters
 
+## Ajouter une page spéciale (ex: Voeux, Événements)
+
+En plus des newsletters mensuelles, vous pouvez ajouter des pages spéciales qui apparaîtront dans le menu.
+
+### Étape 1 : Créer le fichier HTML
+
+Créez votre page HTML (ex: `voeux2026.html`) avec le même template que les newsletters.
+
+**Important** : Assurez-vous d'inclure :
+- Le CSS du menu (voir section "Copier le template" plus haut)
+- La balise `<script src="newsletters.js"></script>` avant `</head>`
+
+### Étape 2 : Ajouter dans newsletters.js
+
+Ouvrez `newsletters.js` et ajoutez votre page dans le tableau `SPECIAL_PAGES` :
+
+```javascript
+const SPECIAL_PAGES = [
+    {
+        file: 'voeux2026.html',
+        label: 'Voeux 2026'
+    },
+    {
+        file: 'evenement-special.html',  // Nouvelle page
+        label: 'Événement Spécial'       // Nouvelle page
+    }
+];
+```
+
+Les pages spéciales apparaîtront **après** les newsletters dans le menu.
+
 ## Structure des fichiers
 
 ```
 romaincarton2026/
 ├── index.html                      # Redirige vers la newsletter la plus récente
-├── newsletters.js                  # Configuration des newsletters
+├── newsletters.js                  # Configuration des newsletters et pages spéciales
 ├── newsletter-2025-12.html         # Newsletter décembre 2025
 ├── newsletter-2026-01.html         # Newsletter janvier 2026
+├── voeux2026.html                  # Page spéciale Voeux 2026
 ├── Newsletter Janvier 2026.html    # Template email Mailjet
 └── README-NEWSLETTERS.md           # Ce fichier
 ```

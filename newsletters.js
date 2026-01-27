@@ -15,6 +15,14 @@ const NEWSLETTERS = [
     }
 ];
 
+// Pages spéciales (affichées après les newsletters dans le menu)
+const SPECIAL_PAGES = [
+    {
+        file: 'voeux2026.html',
+        label: 'Voeux 2026'
+    }
+];
+
 // Fonction pour obtenir la newsletter la plus récente
 function getLatestNewsletter() {
     return NEWSLETTERS[NEWSLETTERS.length - 1];
@@ -27,18 +35,30 @@ function getNewsletterByFile(filename) {
 
 // Fonction pour générer le menu HTML
 function generateNewsletterMenu(currentFile) {
-    const menuItems = NEWSLETTERS.map(nl => {
+    // Générer les items pour les newsletters (inversés pour afficher les plus récents en premier)
+    const newsletterItems = NEWSLETTERS.map(nl => {
         const isCurrent = nl.file === currentFile;
         if (isCurrent) {
             return `<span class="nav-menu-current">${nl.label}</span>`;
         } else {
             return `<a href="${nl.file}">${nl.label}</a>`;
         }
-    }).reverse().join(''); // Reverse pour afficher les plus récents en premier
+    }).reverse().join('');
+
+    // Générer les items pour les pages spéciales
+    const specialItems = SPECIAL_PAGES.map(page => {
+        const isCurrent = page.file === currentFile;
+        if (isCurrent) {
+            return `<span class="nav-menu-current">${page.label}</span>`;
+        } else {
+            return `<a href="${page.file}">${page.label}</a>`;
+        }
+    }).join('');
 
     return `
         <div class="nav-menu">
-            ${menuItems}
+            ${newsletterItems}
+            ${specialItems}
         </div>
     `;
 }
