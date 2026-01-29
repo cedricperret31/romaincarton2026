@@ -169,10 +169,12 @@ h3 {
   margin: 0 4px;
 }
 
-.social-icons img {
+.social-icons img,
+.social-icons svg {
   width: 38px;
   height: 38px;
   border-radius: 25px;
+  display: inline-block;
 }
 
 .footer-text {
@@ -381,14 +383,30 @@ h3 {
 
     <!-- Social Icons -->
     <div class="social-icons">
-      <a href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank">
-        <img src="https://static.mailjet.com/ico-social/facebook.png" alt="Facebook">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank" title="Facebook">
+        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="12" fill="#3B5998"/>
+          <path d="M13.5 12.5V19H10.5V12.5H9V10H10.5V8.5C10.5 6.84 11.34 5.5 13.5 5.5H15.5V8H14C13.45 8 13.5 8.23 13.5 8.65V10H15.5L15 12.5H13.5Z" fill="white"/>
+        </svg>
       </a>
-      <a href="#" target="_blank">
-        <img src="https://static.mailjet.com/ico-social/instagram-colored.png" alt="Instagram">
+      <a href="#" target="_blank" title="Instagram">
+        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="12" fill="url(#instagram-gradient)"/>
+          <defs>
+            <linearGradient id="instagram-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#833AB4;stop-opacity:1" />
+              <stop offset="50%" style="stop-color:#E1306C;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#FD1D1D;stop-opacity:1" />
+            </linearGradient>
+          </defs>
+          <path d="M12 7.5C9.52 7.5 7.5 9.52 7.5 12C7.5 14.48 9.52 16.5 12 16.5C14.48 16.5 16.5 14.48 16.5 12C16.5 9.52 14.48 7.5 12 7.5ZM12 15C10.35 15 9 13.65 9 12C9 10.35 10.35 9 12 9C13.65 9 15 10.35 15 12C15 13.65 13.65 15 12 15ZM16.5 5.5H7.5C6.12 5.5 5 6.62 5 8V16C5 17.38 6.12 18.5 7.5 18.5H16.5C17.88 18.5 19 17.38 19 16V8C19 6.62 17.88 5.5 16.5 5.5ZM17.5 16C17.5 16.55 17.05 17 16.5 17H7.5C6.95 17 6.5 16.55 6.5 16V8C6.5 7.45 6.95 7 7.5 7H16.5C17.05 7 17.5 7.45 17.5 8V16ZM17 8C17 8.55 16.55 9 16 9C15.45 9 15 8.55 15 8C15 7.45 15.45 7 16 7C16.55 7 17 7.45 17 8Z" fill="white"/>
+        </svg>
       </a>
-      <a href="#" target="_blank">
-        <img src="https://static.mailjet.com/ico-social/linkedin.png" alt="LinkedIn">
+      <a href="#" target="_blank" title="LinkedIn">
+        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="12" fill="#0077B5"/>
+          <path d="M8.5 10H6.5V17H8.5V10ZM7.5 9C8.05 9 8.5 8.55 8.5 8C8.5 7.45 8.05 7 7.5 7C6.95 7 6.5 7.45 6.5 8C6.5 8.55 6.95 9 7.5 9ZM14 10H12V17H14V13.5C14 12.12 15.62 12 16 13V17H18V12.25C18 9.75 15.5 9.87 14 11V10Z" fill="white"/>
+        </svg>
       </a>
     </div>
 
