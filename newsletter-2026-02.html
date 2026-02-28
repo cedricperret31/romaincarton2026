@@ -74,7 +74,7 @@ p { margin-top: 0; margin-bottom: 0; }
 
 /* Image Styles */
 img {
-  max-width: 100%;
+  max-width: 100% !important;
   height: auto;
   display: block;
 }
@@ -218,6 +218,19 @@ h3 {
 
   .two-column-container {
     flex-direction: column;
+    gap: 15px;
+  }
+
+  .two-column-container img {
+    margin: 0 auto;
+  }
+
+  h3 {
+    font-size: 14px !important;
+  }
+
+  h1 {
+    font-size: 22px !important;
   }
 }
 </style>
@@ -472,6 +485,10 @@ h3 {
     </div>
 
     <div class="divider"></div>
+
+    <!-- Footer Text -->
+    <p class="footer-text">Le présent message vous a été adressé sur l'adresse électronique que vous avez mentionnée lors de votre inscription sur la liste électorale consulaire (article L.330-4 du code électoral).</p>
+
   </div>
 </div>
 
