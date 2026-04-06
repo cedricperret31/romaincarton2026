@@ -24,6 +24,12 @@ const NEWSLETTERS = [
         year: 2026,
         month: 3,
         label: 'Mars 2026'
+    },
+    {
+        file: 'newsletter-2026-04.html',
+        year: 2026,
+        month: 4,
+        label: 'April 2026'
     }
 ];
 
